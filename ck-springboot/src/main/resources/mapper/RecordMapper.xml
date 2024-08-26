@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cw.mapper.RecordMapper">
+    <select id="list" resultType="com.cw.entity.Record">
+        select * from record
+        <where>
+            <if test="name!=null and  name!=''">
+                record.goods_id in (select goods.id from goods where name like #{name}) and
+            </if>
+            <if test="storageId!=null ">
+                and record.goods_id in(select goods.id from goods where storage_id=#{storageId}) and
+            </if>
+            <if test="goodstypeId!=null ">
+                and record.goods_id in (select goods.id from goods where goodstype_id=#{goodstypeId});
+            </if>
+        </where>
+    </select>
+    <select id="queryOne" resultType="com.cw.entity.Record">
+        select * from record where id=#{id};
+    </select>
+</mapper>

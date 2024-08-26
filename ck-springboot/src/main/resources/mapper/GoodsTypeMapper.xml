@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cw.mapper.GoodsTypeMapper">
+
+    <select id="queryGoodsTypeById" resultType="com.cw.entity.GoodsType">
+        select * from goods_type where id=#{id}
+    </select>
+
+    <select id="queryGoodsTypeByGoodsId" resultType="com.cw.entity.GoodsType">
+        select * from goods_type where id in(select goods.goodstype_id from goods where goods.id=#{id});
+    </select>
+</mapper>

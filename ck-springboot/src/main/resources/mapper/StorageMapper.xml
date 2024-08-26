@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cw.mapper.StorageMapper">
+
+    <select id="queryStorageById" resultType="com.cw.entity.Storage">
+        select * from storage where id=#{id};
+    </select>
+    <select id="queryStorageByGoodsId" resultType="com.cw.entity.Storage">
+        select * from storage where id in(select goods.storage_id from goods where goods.id=#{id});
+    </select>
+</mapper>
